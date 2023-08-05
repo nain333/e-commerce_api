@@ -1,0 +1,23 @@
+{
+  "name": "ecommerce_api",
+  "version": "1.0.0",
+  "description": "An api for an ecommorce website admin to manage the products",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nain333/e-commerce_api.git"
+  },
+  "author": "@nain333",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nain333/e-commerce_api/issues"
+  },
+  "homepage": "https://github.com/nain333/e-commerce_api#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
