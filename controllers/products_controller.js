@@ -52,3 +52,44 @@ module.exports.deleteProduct=async function(req,res){
         console.log('Error in deleting the product: ',err)
     }
 }
+module.exports.updateQuantity=async function(req,res){
+    // to decrease the quantity put number as negative in req.query
+    try{
+    const id = req.params.id.trim()
+    const number = Number((req.query.number))
+    console.log(number)
+    // const updateQty=await Product.findByIdAndUpdate(id,{quantity:quantity+number})
+    const product = await Product.findById(id)
+    if(product){
+    console.log(product)
+    updateQty=product.quantity+number
+    // to ensure not negative values for quantity are storing in db
+    if(updateQty<0){
+
+        updateQty=0
+    }
+    console.log(updateQty)
+    updateProduct=await Product.findByIdAndUpdate(id,{
+        quantity:updateQty
+    })
+    const updatedProduct=await Product.findById(id)
+    return res.status(200).json({
+        data:{
+            product:updatedProduct
+        }
+
+    })
+    }
+    return res.status(404).json(
+        {
+            message:'product not found, please try with a valid productID'
+        }
+    )
+
+
+    }catch(err){
+        console.log('Error while updating product: ',err)
+
+    }
+}
+

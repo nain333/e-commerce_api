@@ -6,11 +6,9 @@ const productSchema = new mongoose.Schema({
             type:String
     },
     quantity: {
-        type:String
-    },
-    id:{
         type:Number
-    }
+    },
+    
 
 
 },{
