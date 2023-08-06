@@ -9,10 +9,9 @@ const productSchema = new mongoose.Schema({
         type:Number
     },
     
-
-
 },{
-    versionKey:false
+    versionKey:false,
+    timestamps:true
 });
 
 // creating a new model called "Product"

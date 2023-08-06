@@ -1,5 +1,4 @@
-const Product = require('../models/prducts')
-const Products = require('../models/prducts')
+const Product = require('../models/products')
 const mongoose = require('mongoose')
 // create product in db
 module.exports.create= async function(req,res){
@@ -27,7 +26,7 @@ module.exports.create= async function(req,res){
 
 }
 module.exports.listProducts= async function(req,res){
-    const allProducts=await Products.find({})
+    const allProducts=await Product.find({})
     return res.status(200).json({
         data:{
             products:allProducts,
@@ -41,15 +40,24 @@ module.exports.deleteProduct=async function(req,res){
     try{
         console.log(req.params.id)
         const id = req.params.id.trim(); // Trim to remove any whitespace or newline characters
+        const product=await Product.findById(id)
+        if(product){
         const deleteProduct = await Product.findByIdAndDelete(id);
         return res.status(200).json({
             message:"Product Deleted successfuly"
         })
+    }
+    return res.status(404).json({
+        message:'Product not found!,please provide valid ID'
+    })
         
         
         
     }catch(err){
         console.log('Error in deleting the product: ',err)
+        res.status(500).json({
+            message:"internal server Error!"
+        })
     }
 }
 module.exports.updateQuantity=async function(req,res){
