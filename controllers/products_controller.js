@@ -10,6 +10,10 @@ module.exports.create= async function(req,res){
         quantity:req.body.quantity
     })
     return res.status(200).json({
+        data:{
+            product:newProduct
+
+        },
         massage:'Product added successfully'
     })
 
